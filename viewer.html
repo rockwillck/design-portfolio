@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STEP Viewer</title>
+  <link rel="stylesheet" type="text/css" href="viewer.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/occt-import-js@0.0.23/dist/occt-import-js.js"></script>
+  <script src="sample-step-data.js"></script>
+</head>
+
+<body>
+  <div id="canvas-container">
+    <div id="loading">
+      <div class="spinner"></div>
+      <span id="loading-text">Loading...</span>
+    </div>
+  </div>
+
+  <script src="viewer.js"></script>
+</body>
+
+</html>
