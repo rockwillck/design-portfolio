@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Project</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="icon" href="download.png">
+	<style>
+		.project-page {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			min-height: 100vh;
+			background-color: #000;
+			padding: 40px 20px;
+			box-sizing: border-box;
+			color: white;
+			font-family: plain;
+		}
+
+		.project-container {
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.project-header {
+			margin-bottom: 50px;
+		}
+
+		.project-header a {
+			color: #aaa;
+			text-decoration: none;
+			font-size: 14px;
+			margin-bottom: 20px;
+			display: inline-block;
+		}
+
+		.project-header a:hover {
+			color: white;
+		}
+
+		.project-header h1 {
+			font-size: 48px;
+			margin: 0;
+			color: white;
+			mix-blend-mode: normal;
+			font-family: plain;
+		}
+
+		.project-content {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 50px;
+			align-items: start;
+		}
+
+		@media (max-width: 768px) {
+			.project-content {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		.step-viewer-section {
+			background-color: #111;
+			border-radius: 10px;
+			overflow: hidden;
+			height: 500px;
+		}
+
+		.step-viewer-section iframe {
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+
+		.photos-section h2 {
+			font-size: 28px;
+			margin-top: 0;
+			margin-bottom: 20px;
+			text-transform: uppercase;
+		}
+
+		.photos-gallery {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			gap: 15px;
+		}
+
+		.photo-item {
+			position: relative;
+			border-radius: 10px;
+			overflow: hidden;
+			background-color: #222;
+			height: 200px;
+			cursor: pointer;
+			transition: transform 0.3s ease;
+		}
+
+		.photo-item:hover {
+			transform: scale(1.05);
+		}
+
+		.photo-item img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.photo-placeholder {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			background: linear-gradient(135deg, #444, #222);
+			color: #888;
+			font-size: 12px;
+			text-align: center;
+		}
+
+		.add-photo-btn {
+			background-color: #333;
+			color: white;
+			border: 2px dashed #666;
+			border-radius: 10px;
+			padding: 40px 20px;
+			text-align: center;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			font-family: plain;
+		}
+
+		.add-photo-btn:hover {
+			border-color: white;
+			background-color: #444;
+		}
+
+		#photoInput {
+			display: none;
+		}
+
+		.token-setup {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100vh;
+			background: rgba(0, 0, 0, 0.9);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 1000;
+		}
+
+		.token-setup-content {
+			background: #222;
+			padding: 40px;
+			border-radius: 10px;
+			max-width: 500px;
+			text-align: center;
+		}
+
+		.token-setup-content h2 {
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+
+		.token-setup-content input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border: 1px solid #555;
+			border-radius: 5px;
+			background: #333;
+			color: white;
+			box-sizing: border-box;
+			font-family: plain;
+		}
+
+		.token-setup-content button {
+			background: white;
+			color: black;
+			border: none;
+			padding: 12px 30px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-family: plain;
+			font-weight: bold;
+		}
+
+		.token-setup-content button:hover {
+			background: #ddd;
+		}
+
+		.status-message {
+			padding: 15px;
+			margin-bottom: 20px;
+			border-radius: 5px;
+			display: none;
+		}
+
+		.status-message.success {
+			background: #2d5016;
+			color: #90ee90;
+		}
+
+		.status-message.error {
+			background: #5c2623;
+			color: #ff6b6b;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="token-setup" id="tokenSetup" style="display: none;">
+		<div class="token-setup-content">
+			<h2>GitHub Token Required</h2>
+			<p>To save photos permanently, you need to add your GitHub Personal Access Token.</p>
+			<div class="status-message" id="tokenStatus"></div>
+			<input type="password" id="tokenInput" placeholder="Enter your GitHub token (read/write repo access)" />
+			<button onclick="saveToken()">Save Token</button>
+			<p style="font-size: 12px; color: #aaa; margin-top: 20px;">
+				<a href="https://github.com/settings/tokens" target="_blank" style="color: #aaa;">Create a token here</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="project-page">
+		<div class="project-container">
+			<div class="project-header">
+				<a href="/">← Back to Portfolio</a>
+				<h1 id="projectTitle">Project Title</h1>
+			</div>
+
+			<div class="project-content">
+				<!-- STEP File Viewer -->
+				<div class="step-viewer-section">
+					<iframe id="stepViewerFrame" src="viewer.html" allow="fullscreen" allowtransparency="true"></iframe>
+				</div>
+
+				<!-- Photos Section -->
+				<div class="photos-section">
+					<h2>Photos</h2>
+					<div class="photos-gallery" id="photosGallery">
+						<div class="add-photo-btn" onclick="document.getElementById('photoInput').click()">
+							+ Add Photo
+						</div>
+					</div>
+					<input type="file" id="photoInput" accept="image/*" multiple>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="projects.js"></script>
+	<script>
+		let currentProject = null;
+
+		// Load project data on page load
+		document.addEventListener('DOMContentLoaded', () => {
+			const urlParams = new URLSearchParams(window.location.search);
+			const projectId = urlParams.get('id');
+			loadProjectPage(projectId);
+
+			// Check if token is needed
+			const token = getGitHubToken();
+			if (!token) {
+				document.getElementById('tokenSetup').style.display = 'flex';
+			}
+		});
+
+		function saveToken() {
+			const input = document.getElementById('tokenInput');
+			const token = input.value.trim();
+			const statusEl = document.getElementById('tokenStatus');
+
+			if (!token) {
+				showStatus(statusEl, 'Please enter a token', 'error');
+				return;
+			}
+
+			// Save token
+			setGitHubToken(token);
+			showStatus(statusEl, 'Token saved! Refreshing...', 'success');
+			
+			setTimeout(() => {
+				document.getElementById('tokenSetup').style.display = 'none';
+			}, 1000);
+		}
+
+		function showStatus(element, message, type) {
+			element.textContent = message;
+			element.className = 'status-message ' + type;
+			element.style.display = 'block';
+		}
+
+		function loadProjectPage(projectId) {
+			const project = projects.find(p => p.id === projectId);
+
+			if (!project) {
+				document.getElementById('projectTitle').textContent = 'Project Not Found';
+				return;
+			}
+
+			currentProject = project;
+
+			// Set project title
+			document.getElementById('projectTitle').textContent = project.title;
+			document.title = project.title + ' - Gabriella Shepherd';
+
+			// Load STEP file if it exists
+			if (project.stepFile) {
+				const frame = document.getElementById('stepViewerFrame');
+				frame.onload = () => {
+					if (frame.contentWindow.loadDefaultSample) {
+						frame.contentWindow.loadDefaultSample = () => {
+							frame.contentWindow.loadStepFromFile(project.stepFile);
+						};
+					}
+				};
+			}
+
+			// Load photos
+			loadPhotosGallery(project);
+
+			// Set up photo upload
+			setupPhotoUpload(projectId, project);
+		}
+
+		function loadPhotosGallery(project) {
+			const gallery = document.getElementById('photosGallery');
+			gallery.innerHTML = '<div class="add-photo-btn" onclick="document.getElementById(\'photoInput\').click()">+ Add Photo</div>';
+
+			if (project.photos && project.photos.length > 0) {
+				project.photos.forEach(photo => {
+					const photoItem = document.createElement('div');
+					photoItem.className = 'photo-item';
+					photoItem.innerHTML = `<img src="${photo}" alt="Project photo">`;
+					gallery.insertBefore(photoItem, gallery.firstChild);
+				});
+			}
+		}
+
+		function setupPhotoUpload(projectId, project) {
+			const input = document.getElementById('photoInput');
+			input.onchange = async (e) => {
+				const files = e.target.files;
+				let uploadedCount = 0;
+
+				for (let file of files) {
+					const reader = new FileReader();
+					reader.onload = async (event) => {
+						// Convert to base64 and add to project
+						const base64 = event.target.result;
+						project.photos.push(base64);
+						uploadedCount++;
+
+						// Save to GitHub when all files are processed
+						if (uploadedCount === files.length) {
+							const saved = await saveProjectsToGitHub(projects);
+							if (saved) {
+								console.log('Photos saved to GitHub!');
+							} else {
+								console.error('Failed to save photos. Check token.');
+							}
+							loadPhotosGallery(project);
+						}
+					};
+					reader.readAsDataURL(file);
+				}
+				input.value = ''; // Reset input
+			};
+		}
+	</script>
+</body>
+
+</html>

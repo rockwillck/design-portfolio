@@ -1,0 +1,23 @@
+[
+  {
+    "id": "project-1",
+    "title": "Project 1",
+    "thumbnail": "project1-thumb.jpg",
+    "stepFile": "project1.step",
+    "photos": []
+  },
+  {
+    "id": "project-2",
+    "title": "Project 2",
+    "thumbnail": "project2-thumb.jpg",
+    "stepFile": "project2.step",
+    "photos": []
+  },
+  {
+    "id": "project-3",
+    "title": "Project 3",
+    "thumbnail": "project3-thumb.jpg",
+    "stepFile": "project3.step",
+    "photos": []
+  }
+]
