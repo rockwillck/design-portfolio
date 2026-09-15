@@ -7,7 +7,7 @@ fetch("projects-data.json").then(response => response.json()).then(data => {
 		projectCard.href = "project.html?id=" + i;
 
 		const img = document.createElement("img");
-		img.src = "/projects/imgs/" + entry.thumbnail;
+		img.src = "projects/imgs/" + entry.thumbnail;
 		img.alt = entry.title;
 		projectCard.appendChild(img);
 
