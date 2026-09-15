@@ -1,4 +1,4 @@
-fetch("/projects-data.json").then(response => response.json()).then(data => {
+fetch("projects-data.json").then(response => response.json()).then(data => {
 	let i = 0;
     for (entry of data) {
 		const projectCard = document.createElement("a");
