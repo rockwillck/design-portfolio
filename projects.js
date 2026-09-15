@@ -2,24 +2,24 @@
 let projects = [
 	{
 		id: 'project-1',
-		title: 'Project 1',
-		thumbnail: 'project1-thumb.jpg',
-		stepFile: 'project1.step',
-		photos: []
+		title: 'Stub Shafts',
+		thumbnail: 'stubshaft.jpg',
+		stepFile: 'sample.step',
+		photos: ['stubshaft.jpg']
 	},
 	{
 		id: 'project-2',
-		title: 'Project 2',
-		thumbnail: 'project2-thumb.jpg',
-		stepFile: 'project2.step',
-		photos: []
+		title: 'Welding Projects',
+		thumbnail: 'mewelding_photo.jpg',
+		stepFile: 'sample.step',
+		photos: ['mewelding_photo.jpg']
 	},
 	{
 		id: 'project-3',
-		title: 'Project 3',
-		thumbnail: 'project3-thumb.jpg',
-		stepFile: 'project3.step',
-		photos: []
+		title: 'Jacking Point',
+		thumbnail: 'orion_back.JPG',
+		stepFile: 'sample.step',
+		photos: ['orion_back.JPG']
 	}
 ];
 
@@ -78,6 +78,12 @@ function createProjectCard(project) {
 		placeholder.innerHTML = `<div>${project.title}<br><small>No image yet</small></div>`;
 		card.appendChild(placeholder);
 	}
+
+	// Add overlay with project name
+	const overlay = document.createElement('div');
+	overlay.className = 'project-card-overlay';
+	overlay.innerHTML = `<div class="project-card-overlay-text">${project.title}</div>`;
+	card.appendChild(overlay);
 
 	return card;
 }
