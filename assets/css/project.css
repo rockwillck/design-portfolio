@@ -1,0 +1,65 @@
+body {
+    background-color: black;
+    padding: 30px;
+    box-sizing: border-box;
+    color: white;
+}
+
+h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 50px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 35px;
+    text-transform: uppercase;
+    margin: none;
+}
+
+.projCont {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#stepViewerFrame {
+    width: 80vmin;
+    height: 50vmin;
+    border: none;
+    margin-bottom: 30px;
+}
+
+#stepViewerFrame, .specs {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+.specs {
+    padding-top: 0;
+}
+
+#projectImgs {
+    display: flex;
+    overflow-x: scroll;
+	 /* Hide scrollbar for Firefox */
+    scrollbar-width: none; 
+    
+    /* Hide scrollbar for IE and Legacy Edge */
+    -ms-overflow-style: none; 
+}
+#projectImgs::-webkit-scrollbar {
+	display: none;
+}
+
+#projectImgs > img {
+    width: 300px;
+}
+
+.projGallery {
+    max-width: 100%;
+}

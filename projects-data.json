@@ -1,29 +1,46 @@
 [
   {
-    "id": "project-1",
     "title": "Stub Shafts",
     "thumbnail": "stubshaft.jpg",
-    "stepFile": "sample.step",
+    "stepFile": "sample",
     "photos": [
+      "stubshaft.jpg",
+      "mewelding_photo.jpg",
+      "stubshaft.jpg",
+      "stubshaft.jpg",
+      "stubshaft.jpg",
       "stubshaft.jpg"
+    ],
+    "specs": [
+      "A",
+      "B",
+      "C"
     ]
   },
   {
-    "id": "project-2",
     "title": "Welding Projects",
     "thumbnail": "mewelding_photo.jpg",
-    "stepFile": "sample.step",
+    "stepFile": "sample",
     "photos": [
       "mewelding_photo.jpg"
+    ],
+    "specs": [
+      "A",
+      "B",
+      "C"
     ]
   },
   {
-    "id": "project-3",
     "title": "Jacking Point",
     "thumbnail": "orion_back.JPG",
-    "stepFile": "sample.step",
+    "stepFile": "sample",
     "photos": [
       "orion_back.JPG"
+    ],
+    "specs": [
+      "A",
+      "B",
+      "C"
     ]
   }
 ]

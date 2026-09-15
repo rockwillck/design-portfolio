@@ -1,3 +1,4 @@
+var STEPFILENAMEQ = "steps/" + window.location.href.split('?f=')[1] + '.step';
 
 const container = document.getElementById('canvas-container');
 const loadingEl = document.getElementById('loading');
@@ -162,15 +163,15 @@ async function loadStepFromArrayBuffer(buffer, fileName = 'Model') {
 
 async function loadDefaultSample() {
     try {
-        const response = await fetch('sample.step');
+        const response = await fetch(STEPFILENAMEQ);
         if (response.ok) {
             const buffer = await response.arrayBuffer();
             if (buffer.byteLength > 100) {
-                return await loadStepFromArrayBuffer(buffer, 'sample.step');
+                return await loadStepFromArrayBuffer(buffer, STEPFILENAMEQ);
             }
         }
     } catch (e) {
-        console.warn('Fetch sample.step failed, attempting embedded base64...', e);
+        console.warn('Fetch step file failed, attempting embedded base64...', e);
     }
 
     if (window.__SAMPLE_STEP_B64__) {
@@ -181,7 +182,7 @@ async function loadDefaultSample() {
             for (let i = 0; i < len; i++) {
                 bytes[i] = binaryString.charCodeAt(i);
             }
-            return await loadStepFromArrayBuffer(bytes.buffer, 'sample.step');
+            return await loadStepFromArrayBuffer(bytes.buffer, STEPFILENAMEQ);
         } catch (err) {
             console.error('Error decoding embedded fallback data:', err);
         }
