@@ -1,4 +1,8 @@
-var STEPFILENAMEQ = "steps/" + window.location.href.split('?f=')[1] + '.step';
+const stepBaseName = window.location.href.split('?f=')[1];
+const stepFileNames = [
+    `steps/${stepBaseName}.step`,
+    `steps/${stepBaseName}.STEP`
+];
 
 const container = document.getElementById('canvas-container');
 const loadingEl = document.getElementById('loading');
@@ -162,17 +166,26 @@ async function loadStepFromArrayBuffer(buffer, fileName = 'Model') {
 }
 
 async function loadDefaultSample() {
-    try {
-        const response = await fetch(STEPFILENAMEQ);
-        if (response.ok) {
-            const buffer = await response.arrayBuffer();
-            if (buffer.byteLength > 100) {
-                return await loadStepFromArrayBuffer(buffer, STEPFILENAMEQ);
+    for (const stepFileName of stepFileNames) {
+        try {
+            const response = await fetch(stepFileName);
+
+            if (response.ok) {
+                const buffer = await response.arrayBuffer();
+
+                if (buffer.byteLength > 100) {
+                    return await loadStepFromArrayBuffer(buffer, stepFileName);
+                }
             }
+        } catch (e) {
+            console.warn(`Could not load ${stepFileName}`, e);
         }
-    } catch (e) {
-        console.warn('Fetch step file failed, attempting embedded base64...', e);
     }
+
+    if (loadingText) {
+        loadingText.textContent = 'STEP file could not be found.';
+    }
+}
 
     if (window.__SAMPLE_STEP_B64__) {
         try {
