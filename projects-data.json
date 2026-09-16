@@ -25,7 +25,8 @@
     "thumbnail": "mewelding_photo.jpg",
     "stepFile": "sample",
     "photos": [
-      "mewelding_photo.jpg"
+      "mewelding_photo.jpg",
+      "scattershield.png"
     ],
     "specs": [
       "Independently learned AC (aluminum) TIG wedling to expand in house manufacturing capabilities",
