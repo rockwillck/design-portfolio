@@ -187,22 +187,6 @@ async function loadDefaultSample() {
     }
 }
 
-    if (window.__SAMPLE_STEP_B64__) {
-        try {
-            const binaryString = atob(window.__SAMPLE_STEP_B64__);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) {
-                bytes[i] = binaryString.charCodeAt(i);
-            }
-            return await loadStepFromArrayBuffer(bytes.buffer, STEPFILENAMEQ);
-        } catch (err) {
-            console.error('Error decoding embedded fallback data:', err);
-        }
-    }
-
-    if (loadingText) loadingText.textContent = 'Drop a .step file to view';
-}
 
 const fileInput = document.getElementById('file-input');
 if (fileInput) {
