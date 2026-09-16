@@ -2,6 +2,7 @@ body {
 	font-family: plain;
 	margin: 0;
 	overflow-x: hidden;
+	background-color: var(--theme-color);
 }
 
 :root {
@@ -14,8 +15,6 @@ h1 {
 	margin: 0;
 	padding: 0;
 	color: white;
-	mix-blend-mode: difference;
-	-webkit-mix-blend-mode: difference;
 }
 
 p {
@@ -33,12 +32,13 @@ p {
 }
 
 .subhero>p, .resumeBtn {
-	background-color: black;
-	color: white;
+	background-color: white;
+	color: black;
 	margin: 5px;
 	padding: 10px;
 	border-radius: 100vmin;
 	font-size: 10px;
+	corner-shape: bevel;
 }
 
 h1 p {
@@ -49,11 +49,22 @@ h1 p {
 	align-items: center;
 	transition: 0.2s;
 	text-transform: uppercase;
+}
+.last > p {
 	text-shadow: calc(var(--font-size)*-0.1) 0px 0px black;
 }
 
-.first>p {
+.first > p {
 	scale: 1.2 2;
+	text-shadow: -3px 0px 0px white;
+}
+.first {
+	background-color: white;
+	color: black;
+	filter: drop-shadow(3px 0 0 white) drop-shadow(0 3px 0 white) drop-shadow(0 -3px 0 white);
+	border-radius: 100vmin 0 100vmin 0;
+	padding: 10px;
+	corner-shape: bevel;
 }
 
 .last {
@@ -61,7 +72,6 @@ h1 p {
 }
 
 h1 p:hover {
-	color: yellow;
 	scale: 1 2;
 }
 
@@ -70,19 +80,28 @@ h1 p:hover {
 	top: 0;
 	padding: var(--font-size);
 	width: 100%;
-	height: 60vh;
+	height: 80vh;
 	display: flex;
 	justify-content: center;
 	align-items: start;
 	flex-direction: column;
 	font-size: var(--font-size);
 	box-sizing: border-box;
-	background-image: url(../images/obeldtphoto.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	box-shadow: inset 0 -10px 10px var(--theme-color);
 	position: relative;
+	overflow: hidden;
+	background-color: black;
+	mix-blend-mode: difference;
+	-webkit-mix-blend-mode: difference;
+}
+.heroBG {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -1;
+	filter: blur(3px);
 }
 
 .resumeBtn::after {
@@ -98,7 +117,7 @@ h1 p:hover {
 	transition: 0.2s;
 }
 .resumeBtn:hover {
-	background-color: black;
+	background-color: blue;
 	color: white;
 }
 
@@ -121,9 +140,9 @@ h1 p:hover {
 
 .content {
 	position: absolute;
-	top: 60vh;
+	top: 80vh;
 	left: -10px;
-	min-height: 120vw;
+	min-height: 2000px;
 	height: auto;
 	box-sizing: border-box;
 	padding-bottom: 60px;
@@ -133,22 +152,26 @@ h1 p:hover {
 	font-size: calc(var(--font-size)*0.4);
 	color: white;
 	padding-top: 10vh;
+	border-radius: 30px 30px 0 0;
+	corner-shape: bevel;
+}
+
+.sects {
+	position: absolute;
+	top: 10vh;
+	z-index: 2;
 	mix-blend-mode: difference;
 }
 
-.content>h2 {
-	font-weight: bold;
-}
-
 .step-viewer-container {
-	position: fixed;
+	position: sticky;
 	right: 10px;
-	top: 0;
+	top: 10vh;
 	width: 100vw;
 	height: 100vh;
 	box-sizing: border-box;
 	overflow: hidden;
-	z-index: -1;
+	z-index: 1;
 }
 
 .step-viewer-overlay {
@@ -217,8 +240,10 @@ a::after {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	height: 10%;
-	width: 1em;
+	width: 100%;
+	height: 2px;
+	border-radius:100vmin 100vmin 0 0;
+	corner-shape: bevel;
 	background-color: white;
 	mix-blend-mode: difference;
 	transition: 0.2s;
@@ -227,6 +252,7 @@ a::after {
 a:hover::after {
 	height: 100%;
 	width: 100%;
+	border-radius: 0;
 }
 
 /* Projects Gallery Styles */
@@ -266,6 +292,7 @@ a:hover::after {
 	height: 100%;
 	object-fit: cover;
 	display: block;
+	/* filter: sepia(100%) hue-rotate(-60deg) saturate(4); */
 }
 
 .project-card-overlay {
