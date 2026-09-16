@@ -12,9 +12,9 @@
       "stubtorsionalstiffness.png"
     ],
     "specs": [
-      "A",
-      "B",
-      "C"
+      "AISI 4340 OIL QUENCHED AND TEMPERED 205°C",
+      "8% mass reduction from previous generation",
+      "validated over 275 car miles of testing"
     ]
   },
   {
@@ -24,10 +24,10 @@
     "photos": [
       "mewelding_photo.jpg"
     ],
-    "specs": [
-      "A",
-      "B",
-      "C"
+    "": [
+      "Independently learned AC (aluminum) TIG wedling to expand in house manufacturing capabilities",
+      "First project: a 50 thou Motor Scatter Shield",
+      "After much trial and error, a success!"
     ]
   },
   {
@@ -38,9 +38,9 @@
       "orion_back.JPG"
     ],
     "specs": [
-      "A",
-      "B",
-      "C"
+      "Optimized ANSYS simulation by refining mesh only around stress concentrations and modeled simplified bolt geometry in order to reduce solving time",
+      "Learned Steel/DC TIG welding an welded the 4140 steel component",
+      "Designed to interface seamlessly within existing drivetrain and brake assembly constraints"
     ]
   }
 ]
