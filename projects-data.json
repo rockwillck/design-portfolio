@@ -12,9 +12,11 @@
       "stubtorsionalstiffness.png"
     ],
     "specs": [
-      "AISI 4340 OIL QUENCHED AND TEMPERED 205°C",
+      "AISI 4340 oil quenched and tempered 205°C",
       "8% mass reduction from previous generation",
-      "validated over 275 car miles of testing"
+      "Developed Excel spreadsheet to calculate Marin factors, angular deflection, and Hertzian contact stress",
+      "Modeled tripod contact stress and worst-case halfshaft angle in ANSYS Mechanical to identify stress concentrations",
+      "Validated over 275 miles of testing with no fatigue failures"
     ]
   },
   {
