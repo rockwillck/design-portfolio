@@ -324,6 +324,12 @@ a:hover::after {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
+.name-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25em;
+    flex-wrap: wrap;
+}
 
 .skill-category p {
 	font-size: inherit;
