@@ -78,6 +78,9 @@ h1 p:hover {
 	font-size: var(--font-size);
 	box-sizing: border-box;
 	background-image: url(../images/obeldtphoto.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 	box-shadow: inset 0 -10px 10px var(--theme-color);
 	position: relative;
 }
